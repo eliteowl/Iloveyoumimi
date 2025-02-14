@@ -2,174 +2,147 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentine's Day Treasure Hunt</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #fff0f5;
             color: #333;
+            text-align: center;
             margin: 0;
             padding: 0;
-            text-align: center;
         }
-        .hidden {
-            display: none;
-        }
-        .screen {
-            margin-top: 50px;
-            padding: 20px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: none; /* Au lieu de hidden pour éviter le flash */
-            max-width: 90%;
-            width: 400px;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-        .visible {
-            display: inline-block;
-        }
-        .fade-in {
-            opacity: 1;
-        }
-        .heart-button {
-            font-size: 100px;
-            color: #ccc;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .heart-button.filled {
-            color: red;
-        }
-        button {
-            margin-top: 15px;
-            padding: 12px 18px;
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #ff1493;
-        }
-        video, img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-        a {
-            color: #ff69b4;
-        }
+        .hidden { display: none; }
+        .screen { margin-top: 50px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: none; max-width: 90%; width: 400px; opacity: 0; transition: opacity 0.8s ease; }
+        .visible { display: inline-block; }
+        .fade-in { opacity: 1; }
+        .heart-button { font-size: 100px; color: #ccc; cursor: pointer; transition: color 0.3s ease; }
+        .heart-button.filled { color: red; }
+        button { margin: 10px; padding: 10px 15px; background-color: #ff69b4; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background-color: #ff1493; }
+        video, img { max-width: 100%; border-radius: 10px; }
+        a { color: #ff69b4; }
+        #finalHeart { font-size: 150px; color: red; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <div id="startScreen" class="screen visible fade-in">
-        <h1>Do you wanna be my Valentine? ❤️</h1>
-        <p>Tap the heart 5 times to unlock the treasure hunt!</p>
-        <div id="heart" class="heart-button" onclick="fillHeart()">❤️</div>
-    </div>
+<div id="startScreen" class="screen visible fade-in">
+    <h1>Do you wanna be my Valentine? ❤️</h1>
+    <p>Tap the heart 5 times to unlock the treasure hunt!</p>
+    <div id="heart" class="heart-button" onclick="fillHeart()">❤️</div>
+</div>
 
-    <div id="question1" class="screen hidden">
-        <h2>What kind of dance do you like?</h2>
-        <button onclick="answerQuestion(1)">Hip-hop</button>
-        <button onclick="answerQuestion(1)">Salsa</button>
-        <button onclick="answerQuestion(1)">Traditional Dance</button>
-    </div>
+<!-- Cadeau 1 -->
+<div id="gift1" class="screen hidden">
+    <h3>🎁 You unlocked your first gift: Funny African Dance Video!</h3>
+    <video controls><source src="african_dance_video.mp4" type="video/mp4"></video>
+    <button onclick="nextQuestion(2)">Next</button>
+</div>
 
-    <div id="gift1" class="screen hidden">
-        <h3>🎁 You unlocked your first gift: Funny African Dance Video!</h3>
-        <video controls>
-            <source src="african_dance_video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <button onclick="nextQuestion(2)">Next</button>
-    </div>
+<!-- Cadeau 2 -->
+<div id="gift2" class="screen hidden">
+    <h3>🎁 Starbucks Gift Card!</h3>
+    <p><a href="starbucks_gift_card_link" target="_blank">Click here for your Starbucks Card!</a></p>
+    <button onclick="nextQuestion(3)">Next</button>
+</div>
 
-    <div id="question2" class="screen hidden">
-        <h2>What’s your favorite drink at Starbucks?</h2>
-        <button onclick="answerQuestion(2)">Coffee</button>
-        <button onclick="answerQuestion(2)">Frappuccino</button>
-        <button onclick="answerQuestion(2)">Tea</button>
-    </div>
+<!-- Cadeau 3 -->
+<div id="gift3" class="screen hidden">
+    <h3>🎁 Fortnite Skins!</h3>
+    <p><a href="fortnite_skins_link" target="_blank">Click here to get your Fortnite Skins!</a></p>
+    <button onclick="nextQuestion(4)">Next</button>
+</div>
 
-    <div id="gift2" class="screen hidden">
-        <h3>🎁 You unlocked your second gift: Starbucks Gift Card!</h3>
-        <p><a href="starbucks_gift_card_link" target="_blank">Click here for your Starbucks Card!</a></p>
-        <button onclick="nextQuestion(3)">Next</button>
-    </div>
+<!-- Cadeau 4 -->
+<div id="gift4" class="screen hidden">
+    <h3>🎁 Virtual Bouquet!</h3>
+    <img src="virtual_bouquet_image.jpg" alt="Virtual Bouquet">
+    <button onclick="nextQuestion(5)">Next</button>
+</div>
 
-    <div id="question3" class="screen hidden">
-        <h2>If you could pick a Fortnite skin for me, which one would it be?</h2>
-        <button onclick="answerQuestion(3)">Skin A</button>
-        <button onclick="answerQuestion(3)">Skin B</button>
-        <button onclick="answerQuestion(3)">Skin C</button>
-    </div>
+<!-- Cadeau 5 -->
+<div id="gift5" class="screen hidden">
+    <h3>🎁 Nintendo Gift Card!</h3>
+    <p><a href="nintendo_gift_card_link" target="_blank">Click here for your Nintendo Card!</a></p>
+    <button onclick="nextQuestion(6)">Next</button>
+</div>
 
-    <div id="gift3" class="screen hidden">
-        <h3>🎁 You unlocked your third gift: Fortnite Skins!</h3>
-        <p><a href="fortnite_skins_link" target="_blank">Click here to get your Fortnite Skins!</a></p>
-        <button onclick="nextQuestion(4)">Next</button>
-    </div>
+<!-- Cadeau final -->
+<div id="gift6" class="screen hidden">
+    <h3>🎁 It Takes Two (Co-op Game)!</h3>
+    <p><a href="it_takes_two_link" target="_blank">Click here to get It Takes Two!</a></p>
+    <div id="finalHeart">❤️</div>
+    <h2>I love you, you make my day better!</h2>
+</div>
 
-    <div id="question4" class="screen hidden">
-        <h2>What’s your favorite flower?</h2>
-        <button onclick="answerQuestion(4)">Rose</button>
-        <button onclick="answerQuestion(4)">Tulip</button>
-        <button onclick="answerQuestion(4)">Lily</button>
-    </div>
+<!-- Questions / Énigmes -->
+<script>
+    let heartClicks = 0;
 
-    <div id="gift4" class="screen hidden">
-        <h3>🎁 You unlocked your final gift: A Virtual Bouquet!</h3>
-        <img src="virtual_bouquet_image.jpg" alt="Virtual Bouquet">
-        <p>You deserve all the flowers in the world!</p>
-        <button onclick="endGame()">Finish</button>
-    </div>
+    function fillHeart() {
+        heartClicks++;
+        const heart = document.getElementById('heart');
+        heart.classList.add('filled');
+        if (heartClicks >= 5) transitionScreen('startScreen', 'question1');
+    }
 
-    <script>
-        let heartClicks = 0;
+    const questions = {
+        1: { text: "I have no voice, but I can make you move. What am I?", options: ["A ghost", "Music", "A remote control"], answer: 1, gift: 'gift1' },
+        2: { text: "I’m hot, I’m brown, and I’m full of beans. What am I?", options: ["A coffee", "A chocolate bar", "A baked potato"], answer: 0, gift: 'gift2' },
+        3: { text: "Parents call me useless and a waste of money. What am I?", options: ["A Fortnite skin", "A phone", "A car"], answer: 0, gift: 'gift3' },
+        4: { text: "What do you get when you cross a flower with a vampire?", options: ["A bloodrose", "A tulipire", "A fangbloom"], answer: -1, gift: 'gift4' },
+        5: { text: "What’s Mario’s favorite type of shoe?", options: ["Sneakers", "Sandals", "Jump boots"], answer: -1, gift: 'gift5' },
+        6: { text: "What’s the best way to test a relationship?", options: ["idk leave me alone", "Assembling IKEA furniture", "Playing a co-op game"], answer: 2, gift: 'gift6' },
+    };
 
-        function fillHeart() {
-            heartClicks++;
-            const heart = document.getElementById('heart');
-            heart.classList.add('filled');
+    function createQuestion(id) {
+        const q = questions[id];
+        const screen = document.createElement('div');
+        screen.id = 'question' + id;
+        screen.className = 'screen hidden';
+        screen.innerHTML = `<h2>${q.text}</h2>`;
+        q.options.forEach((opt, index) => {
+            screen.innerHTML += `<button onclick="answerQuestion(${id}, ${index})">${opt}</button>`;
+        });
+        document.body.appendChild(screen);
+    }
 
-            if (heartClicks >= 5) {
-                transitionScreen('startScreen', 'question1');
-            }
+    Object.keys(questions).forEach(id => createQuestion(id));
+
+    function answerQuestion(questionNumber, chosenIndex) {
+        const correct = questions[questionNumber].answer;
+        const giftId = questions[questionNumber].gift;
+
+        if (correct === -1 || chosenIndex === correct) {
+            transitionScreen('question' + questionNumber, giftId);
+        } else {
+            const responses = [
+                "Not quite right, but here’s your gift anyway!",
+                "Oops, close enough! Here's your prize.",
+                "Haha, not exactly! But you still get a gift!"
+            ];
+            alert(responses[Math.floor(Math.random() * responses.length)]);
+            transitionScreen('question' + questionNumber, giftId);
         }
+    }
 
-        function answerQuestion(questionNumber) {
-            transitionScreen('question' + questionNumber, 'gift' + questionNumber);
-        }
+    function nextQuestion(nextNumber) {
+        transitionScreen('gift' + (nextNumber - 1), 'question' + nextNumber);
+    }
 
-        function nextQuestion(nextQuestionNumber) {
-            transitionScreen('gift' + (nextQuestionNumber - 1), 'question' + nextQuestionNumber);
-        }
-
-        function endGame() {
-            alert("Congrats! You’ve completed the treasure hunt! Happy Valentine’s Day!");
-        }
-
-        function transitionScreen(currentId, nextId) {
-            const currentScreen = document.getElementById(currentId);
-            const nextScreen = document.getElementById(nextId);
-
-            currentScreen.classList.remove('fade-in');
-            setTimeout(() => {
-                currentScreen.classList.remove('visible');
-                currentScreen.style.display = 'none';
-
-                nextScreen.style.display = 'inline-block';
-                setTimeout(() => {
-                    nextScreen.classList.add('fade-in', 'visible');
-                }, 50);
-            }, 500);
-        }
-    </script>
+    function transitionScreen(currentId, nextId) {
+        const current = document.getElementById(currentId);
+        const next = document.getElementById(nextId);
+        current.classList.remove('fade-in');
+        setTimeout(() => {
+            current.style.display = 'none';
+            current.classList.remove('visible');
+            next.style.display = 'inline-block';
+            setTimeout(() => next.classList.add('fade-in', 'visible'), 50);
+        }, 500);
+    }
+</script>
 
 </body>
 </html>
