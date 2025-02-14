@@ -211,8 +211,29 @@
         }
 
         function answerQuestion(questionNumber, answer) {
+            const correctAnswers = {
+                1: "Music", // Toutes les réponses sont bonnes
+                2: "No", // Seulement "Yes" est mauvaise
+                3: "A coffee", // Toutes les réponses sont bonnes
+                4: "A Fortnite skin", // "A Fortnite skin" et "CALL ME A GOOD BOY 😫" sont bons
+                5: "Sneakers", // Toutes les réponses sont bonnes
+                6: "Playing a co-op game" // Seulement "Playing a co-op game" est bonne
+            };
+
             const giftScreen = document.getElementById('gift' + questionNumber);
-            giftScreen.querySelector('h3').innerText = "🎁 You unlocked your gift!";
+            if (
+                (questionNumber === 1) || // Toutes les réponses sont bonnes
+                (questionNumber === 2 && answer !== "Yes") || // Seulement "Yes" est mauvaise
+                (questionNumber === 3) || // Toutes les réponses sont bonnes
+                (questionNumber === 4 && (answer === "A Fortnite skin" || answer === "CALL ME A GOOD BOY 😫")) || // "A Fortnite skin" et "CALL ME A GOOD BOY 😫" sont bons
+                (questionNumber === 5) || // Toutes les réponses sont bonnes
+                (questionNumber === 6 && answer === "Playing a co-op game") // Seulement "Playing a co-op game" est bonne
+            ) {
+                giftScreen.querySelector('h3').innerText = giftScreen.querySelector('h3').innerText; // Garde le texte personnalisé
+            } else {
+                const randomMessage = wrongMessages[Math.floor(Math.random() * wrongMessages.length)];
+                giftScreen.querySelector('h3').innerText = randomMessage;
+            }
             transitionScreen('question' + questionNumber, 'gift' + questionNumber);
         }
 
