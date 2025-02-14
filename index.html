@@ -4,14 +4,7 @@
     <meta charset="UTF-8">
     <title>Valentine's Day Treasure Hunt</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fff0f5;
-            color: #333;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+        body { font-family: 'Arial', sans-serif; background-color: #fff0f5; color: #333; text-align: center; margin: 0; padding: 0; }
         .hidden { display: none; }
         .screen { margin-top: 50px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: none; max-width: 90%; width: 400px; opacity: 0; transition: opacity 0.8s ease; }
         .visible { display: inline-block; }
@@ -35,9 +28,9 @@
 <!-- Énigme 1 -->
 <div id="question1" class="screen hidden">
     <h2>I have no voice, but I can make you move. What am I?</h2>
-    <button onclick="answerQuestion(1, 0)">A ghost</button>
-    <button onclick="answerQuestion(1, 1)">Music</button>
-    <button onclick="answerQuestion(1, 2)">A remote control</button>
+    <button onclick="answerQuestion(1, 'Music')">Music</button>
+    <button onclick="answerQuestion(1, 'A ghost')">A ghost</button>
+    <button onclick="answerQuestion(1, 'A remote control')">A remote control</button>
 </div>
 
 <!-- Cadeau 1 -->
@@ -49,7 +42,81 @@
     <button onclick="nextQuestion(2)">Next</button>
 </div>
 
-<!-- Ajoute tes autres questions/cadeaux ici -->
+<!-- Énigme 2 -->
+<div id="question2" class="screen hidden">
+    <h2>What do you get when you cross a flower with a vampire?</h2>
+    <button onclick="answerQuestion(2, 'A bloodrose')">A bloodrose</button>
+    <button onclick="answerQuestion(2, 'A tulipire')">A tulipire</button>
+    <button onclick="answerQuestion(2, 'A fangbloom')">A fangbloom</button>
+</div>
+
+<!-- Cadeau 2 -->
+<div id="gift2" class="screen hidden">
+    <h3>🎁 You unlocked your second gift: A Virtual Bouquet!</h3>
+    <img src="virtual_bouquet_image.jpg" alt="Virtual Bouquet">
+    <p>Not quite, but here’s a virtual bouquet instead!</p>
+    <button onclick="nextQuestion(3)">Next</button>
+</div>
+
+<!-- Énigme 3 -->
+<div id="question3" class="screen hidden">
+    <h2>I’m hot, I’m brown, and I’m full of beans. What am I?</h2>
+    <button onclick="answerQuestion(3, 'A coffee')">A coffee</button>
+    <button onclick="answerQuestion(3, 'A chocolate bar')">A chocolate bar</button>
+    <button onclick="answerQuestion(3, 'A baked potato')">A baked potato</button>
+</div>
+
+<!-- Cadeau 3 -->
+<div id="gift3" class="screen hidden">
+    <h3>🎁 You unlocked your third gift: Starbucks Gift Card!</h3>
+    <p><a href="starbucks_gift_card_link" target="_blank">Click here for your Starbucks Card!</a></p>
+    <button onclick="nextQuestion(4)">Next</button>
+</div>
+
+<!-- Énigme 4 -->
+<div id="question4" class="screen hidden">
+    <h2>Parents call me useless and a waste of money. What am I?</h2>
+    <button onclick="answerQuestion(4, 'A Fortnite skin')">A Fortnite skin</button>
+    <button onclick="answerQuestion(4, 'A phone')">A phone</button>
+    <button onclick="answerQuestion(4, 'A car spoiler')">A car spoiler</button>
+</div>
+
+<!-- Cadeau 4 -->
+<div id="gift4" class="screen hidden">
+    <h3>🎁 You unlocked your fourth gift: Fortnite Skins!</h3>
+    <p><a href="fortnite_skins_link" target="_blank">Click here to get your Fortnite Skins!</a></p>
+    <button onclick="nextQuestion(5)">Next</button>
+</div>
+
+<!-- Énigme 5 -->
+<div id="question5" class="screen hidden">
+    <h2>What’s Mario’s favorite type of shoe?</h2>
+    <button onclick="answerQuestion(5, 'Sneakers')">Sneakers</button>
+    <button onclick="answerQuestion(5, 'Sandals')">Sandals</button>
+    <button onclick="answerQuestion(5, 'Jump boots')">Jump boots</button>
+</div>
+
+<!-- Cadeau 5 -->
+<div id="gift5" class="screen hidden">
+    <h3>🎁 You unlocked your fifth gift: Nintendo Gift Card!</h3>
+    <p>Close! Here’s a gift card to level up your gaming.</p>
+    <p><a href="nintendo_gift_card_link" target="_blank">Click here for your Nintendo Card!</a></p>
+    <button onclick="nextQuestion(6)">Next</button>
+</div>
+
+<!-- Cadeau final -->
+<div id="question6" class="screen hidden">
+    <h2>What’s the best way to test a relationship?</h2>
+    <button onclick="answerQuestion(6, 'Assembling IKEA furniture')">Assembling IKEA furniture</button>
+    <button onclick="answerQuestion(6, 'Playing a co-op game')">Playing a co-op game</button>
+    <button onclick="answerQuestion(6, 'idk leave me alone')">idk leave me alone</button>
+</div>
+
+<div id="finalGift" class="screen hidden">
+    <h3>🎁 You unlocked the final gift: It Takes Two!</h3>
+    <p><a href="it_takes_two_game_link" target="_blank">Click here to get the game!</a></p>
+    <p>❤️ I love you, you make my day better! ❤️</p>
+</div>
 
 <script>
     let heartClicks = 0;
@@ -58,39 +125,28 @@
     function fillHeart() {
         heartClicks++;
         const heart = document.getElementById('heart');
-        const newSize = 20 + heartClicks * 10;
-        heart.style.fontSize = newSize + 'px';
+        heart.style.fontSize = (20 + heartClicks * 10) + 'px';
 
         if (heartClicks >= maxClicks) {
             transitionScreen('startScreen', 'question1');
         }
     }
 
-    function answerQuestion(questionNumber, chosenIndex) {
-        if (questionNumber === 1 && chosenIndex === 1) {
-            transitionScreen('question1', 'gift1');
+    function answerQuestion(questionNumber, correctAnswer) {
+        if (questionNumber === 6 && correctAnswer === 'Playing a co-op game') {
+            transitionScreen('question6', 'finalGift');
         } else {
-            alert("Not quite right, but here’s your gift anyway!");
-            transitionScreen('question1', 'gift1');
+            transitionScreen(`question${questionNumber}`, `gift${questionNumber}`);
         }
     }
 
     function nextQuestion(nextNumber) {
-        alert("Ajoute les autres questions ici!");
-        // Tu ajouteras ici la suite des transitions vers tes autres questions/cadeaux
+        transitionScreen(`gift${nextNumber - 1}`, `question${nextNumber}`);
     }
 
-    function transitionScreen(currentId, nextId) {
-        const currentScreen = document.getElementById(currentId);
-        const nextScreen = document.getElementById(nextId);
-
-        currentScreen.classList.remove('fade-in');
-        setTimeout(() => {
-            currentScreen.style.display = 'none';
-            currentScreen.classList.remove('visible');
-            nextScreen.style.display = 'inline-block';
-            setTimeout(() => nextScreen.classList.add('fade-in', 'visible'), 50);
-        }, 500);
+    function transitionScreen(current, next) {
+        document.getElementById(current).style.display = 'none';
+        document.getElementById(next).style.display = 'inline-block';
     }
 </script>
 
