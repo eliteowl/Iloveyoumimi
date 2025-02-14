@@ -107,7 +107,7 @@
 
     <!-- Cadeau 2: Virtual Flowers -->
     <div id="question2" class="screen hidden">
-        <h2>Is valentine's day valentine's day without flowers ?</h2>
+        <h2>Is valentine's day valentine's day without flowers?</h2>
         <button onclick="answerQuestion(2, 'Yes')">Yes</button>
         <button onclick="answerQuestion(2, 'No')">No</button>
         <button onclick="answerQuestion(2, 'SPIT ON THAT THANG HAWK TUAH')">SPIT ON THAT THANG HAWK TUAH</button>
@@ -131,12 +131,13 @@
     <div id="gift3" class="screen hidden">
         <h3>🎁 You unlocked your third gift 😇 : Starbucks Gift Card for yaaa!</h3>
         <p>Code : 6335600965819000-97204074</p>
+        <img src="starbucks_gift_card.jpg" alt="Starbucks Gift Card">
         <button onclick="nextQuestion(4)">Next</button>
     </div>
 
     <!-- Cadeau 4: Fortnite Skins -->
     <div id="question4" class="screen hidden">
-        <h2>Énigme : "Parents call me useless and a waste of money. What am I?"</h2>
+        <h2>Parents call me useless and a waste of money. What am I?</h2>
         <button onclick="answerQuestion(4, 'A Fortnite skin')">A Fortnite skin</button>
         <button onclick="answerQuestion(4, 'A phone')">A phone</button>
         <button onclick="answerQuestion(4, 'CALL ME A GOOD BOY 😫')">CALL ME A GOOD BOY 😫</button>
@@ -159,12 +160,13 @@
     <div id="gift5" class="screen hidden">
         <h3>🎁 You unlocked your fifth gift 🥳 : Nintendo Gift Card!</h3>
         <p>Here’s a gift card that you can use on Switch to get anything you want (I mean that's kinda obvious idk what I'm saying at this point). Code : C0PX3QYVY646JDK0</p>
+        <img src="nintendo_gift_card.jpg" alt="Nintendo Gift Card">
         <button onclick="nextQuestion(6)">Next</button>
     </div>
 
     <!-- Cadeau final: It Takes Two -->
     <div id="question6" class="screen hidden">
-        <h2>What’s the best way to test a relationship ? 😎"</h2>
+        <h2>What’s the best way to test a relationship? 😎</h2>
         <button onclick="answerQuestion(6, 'idk leave me alone')">idk leave me alone</button>
         <button onclick="answerQuestion(6, 'Assembling IKEA furniture')">Assembling IKEA furniture (I HAVE NIGHTMARES)</button>
         <button onclick="answerQuestion(6, 'Playing a co-op game')">Playing a co-op game</button>
@@ -209,29 +211,8 @@
         }
 
         function answerQuestion(questionNumber, answer) {
-            const correctAnswers = {
-                1: "Music", // Toutes les réponses sauf "Yes" sont bonnes
-                2: "No", // Seulement "Yes" est mauvaise
-                3: "A coffee", // Seulement "A coffee" est bonne
-                4: "A Fortnite skin", // "A Fortnite skin" et "CALL ME A GOOD BOY 😫" sont bons
-                5: "Sneakers", // Toutes les réponses sont bonnes
-                6: "Playing a co-op game" // Seulement "Playing a co-op game" est bonne
-            };
-
             const giftScreen = document.getElementById('gift' + questionNumber);
-            if (
-                (questionNumber === 1 && answer !== "Yes") ||
-                (questionNumber === 2 && answer !== "Yes") ||
-                (questionNumber === 3 && answer === "A coffee") ||
-                (questionNumber === 4 && (answer === "A Fortnite skin" || answer === "CALL ME A GOOD BOY 😫")) ||
-                (questionNumber === 5) || // Toutes les réponses sont bonnes
-                (questionNumber === 6 && answer === "Playing a co-op game")
-            ) {
-                giftScreen.querySelector('h3').innerText = "🎁 You unlocked your gift!";
-            } else {
-                const randomMessage = wrongMessages[Math.floor(Math.random() * wrongMessages.length)];
-                giftScreen.querySelector('h3').innerText = randomMessage;
-            }
+            giftScreen.querySelector('h3').innerText = "🎁 You unlocked your gift!";
             transitionScreen('question' + questionNumber, 'gift' + questionNumber);
         }
 
