@@ -234,6 +234,7 @@
 
     <!-- Sons -->
     <audio id="successSound" src="success_sound.mp3"></audio> <!-- Son de succès -->
+    <audio id="hawkTuahSound" src="hawk_tuah.mp3"></audio> <!-- Son Hawk Tuah -->
 
     <script>
         let heartClicks = 0;
@@ -292,11 +293,19 @@
                 giftScreen.querySelector('h3').innerText = randomMessage;
             }
 
-            // Joue le son de succès et affiche les confettis
-            const successSound = document.getElementById('successSound');
-            successSound.currentTime = 0; // Réinitialise le son pour pouvoir le rejouer
-            successSound.play();
+            // Joue le son Hawk Tuah uniquement pour le cadeau Fortnite Skins
+            if (questionNumber === 4) {
+                const hawkTuahSound = document.getElementById('hawkTuahSound');
+                hawkTuahSound.currentTime = 0; // Réinitialise le son pour pouvoir le rejouer
+                hawkTuahSound.play();
+            } else {
+                // Joue le son de succès pour les autres cadeaux
+                const successSound = document.getElementById('successSound');
+                successSound.currentTime = 0; // Réinitialise le son pour pouvoir le rejouer
+                successSound.play();
+            }
 
+            // Affiche les confettis
             const confettiContainer = document.getElementById('confettiContainer');
             confettiContainer.classList.remove('hidden');
             createConfetti();
