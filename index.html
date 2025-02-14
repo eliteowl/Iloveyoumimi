@@ -95,6 +95,17 @@
             0% { transform: translateY(0) rotate(0); opacity: 1; }
             100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
+        /* Cœurs animés */
+        .heart-piece {
+            position: absolute;
+            font-size: 30px;
+            color: red;
+            animation: float 5s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-100vh) rotate(360deg); }
+        }
         /* Écran 404 */
         #errorScreen {
             position: fixed;
@@ -229,8 +240,9 @@
         <audio id="finalAudio" src="final_audio.mp3" autoplay loop></audio> <!-- Audio pour l'écran final -->
     </div>
 
-    <!-- Confettis -->
+    <!-- Confettis et cœurs animés -->
     <div id="confettiContainer" class="confetti hidden"></div>
+    <div id="heartsContainer" class="confetti hidden"></div>
 
     <!-- Sons -->
     <audio id="successSound" src="success_sound.mp3"></audio> <!-- Son de succès -->
@@ -326,6 +338,18 @@
             }
         }
 
+        function createHearts() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            for (let i = 0; i < 30; i++) {
+                const heartPiece = document.createElement('div');
+                heartPiece.classList.add('heart-piece');
+                heartPiece.innerText = '❤️';
+                heartPiece.style.left = `${Math.random() * 100}%`;
+                heartPiece.style.animationDelay = `${Math.random() * 2}s`;
+                heartsContainer.appendChild(heartPiece);
+            }
+        }
+
         function nextQuestion(nextQuestionNumber) {
             const currentScreen = document.querySelector('.screen.visible');
             const nextScreen = document.getElementById('question' + nextQuestionNumber);
@@ -335,6 +359,16 @@
         function endGame() {
             const finalAudio = document.getElementById('finalAudio');
             finalAudio.play(); // Joue l'audio de l'écran final
+
+            // Affiche les cœurs et les confettis
+            const heartsContainer = document.getElementById('heartsContainer');
+            heartsContainer.classList.remove('hidden');
+            createHearts();
+
+            const confettiContainer = document.getElementById('confettiContainer');
+            confettiContainer.classList.remove('hidden');
+            createConfetti();
+
             transitionScreen('gift6', 'finalScreen');
         }
 
