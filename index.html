@@ -35,10 +35,10 @@
             opacity: 1;
         }
         .heart-button {
-            font-size: 100px;
+            font-size: 30px; /* Taille initiale petite */
             color: #ccc;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
         .heart-button.filled {
             color: red;
@@ -78,8 +78,12 @@
 
     <div id="startScreen" class="screen visible fade-in">
         <h1>Do you wanna be my Valentine? ❤️</h1>
-        <p>Tap the heart many times to unlock the rest 😏 Don't tap to fast tho, or it may bust ...</p>
+        <p>Tap the heart many times to unlock the rest 😏 Don't tap too fast tho, or it may bust ...</p>
         <div id="heart" class="heart-button" onclick="fillHeart()">❤️</div>
+        <div id="tooFastMessage" class="hidden">
+            <p>😩 I said not so fast ...</p>
+            <button onclick="nextQuestion(1)">Next</button>
+        </div>
     </div>
 
     <!-- Cadeau 1: Africans Dancing -->
@@ -189,10 +193,14 @@
         function fillHeart() {
             heartClicks++;
             const heart = document.getElementById('heart');
-            heart.classList.add('filled');
+            const tooFastMessage = document.getElementById('tooFastMessage');
 
-            if (heartClicks >= 5) {
-                transitionScreen('startScreen', 'question1');
+            // Augmente la taille du cœur progressivement
+            heart.style.fontSize = `${30 + (heartClicks * 5)}px`;
+
+            if (heartClicks >= 15) {
+                heart.innerText = "😩"; // Remplace le cœur par l'emoji "😩"
+                tooFastMessage.classList.remove('hidden'); // Affiche le message et le bouton Next
             }
         }
 
@@ -217,7 +225,7 @@
         }
 
         function nextQuestion(nextQuestionNumber) {
-            transitionScreen('gift' + (nextQuestionNumber - 1), 'question' + nextQuestionNumber);
+            transitionScreen('startScreen', 'question' + nextQuestionNumber);
         }
 
         function endGame() {
