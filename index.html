@@ -225,7 +225,9 @@
         }
 
         function nextQuestion(nextQuestionNumber) {
-            transitionScreen('startScreen', 'question' + nextQuestionNumber);
+            const currentScreen = document.querySelector('.screen.visible');
+            const nextScreen = document.getElementById('question' + nextQuestionNumber);
+            transitionScreen(currentScreen.id, nextScreen.id);
         }
 
         function endGame() {
