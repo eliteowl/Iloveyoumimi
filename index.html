@@ -22,7 +22,7 @@
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: none;
+            display: none; /* Au lieu de hidden pour éviter le flash */
             max-width: 90%;
             width: 400px;
             opacity: 0;
@@ -35,7 +35,7 @@
             opacity: 1;
         }
         .heart-button {
-            font-size: 30px;
+            font-size: 30px; /* Taille initiale petite */
             color: #ccc;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -62,7 +62,6 @@
         }
         a {
             color: #ff69b4;
-            text-decoration: none;
         }
         .final-heart {
             font-size: 150px;
@@ -76,8 +75,6 @@
     </style>
 </head>
 <body>
-    <audio id="heartSound" src="change_sound.mp3"></audio>
-    <audio id="backgroundMusic" src="background.mp3" loop></audio>
 
     <div id="startScreen" class="screen visible fade-in">
         <h1>Do you wanna be my Valentine? ❤️</h1>
@@ -89,7 +86,7 @@
         </div>
     </div>
 
-    <!-- Cadeau 1 -->
+    <!-- Cadeau 1: Africans Dancing -->
     <div id="question1" class="screen hidden">
         <h2>Shake it, Shake it, Shake it 😼</h2>
         <button onclick="answerQuestion(1, 'A ghost')">WTF IS THAT?</button>
@@ -106,7 +103,7 @@
         <button onclick="nextQuestion(2)">Next</button>
     </div>
 
-    <!-- Cadeau 2 -->
+    <!-- Cadeau 2: Virtual Flowers -->
     <div id="question2" class="screen hidden">
         <h2>Is valentine's day valentine's day without flowers ?</h2>
         <button onclick="answerQuestion(2, 'A bloodrose')">Yes</button>
@@ -117,39 +114,39 @@
     <div id="gift2" class="screen hidden">
         <h3>🎁 You unlocked your second gift : Virtual Flowers!</h3>
         <img src="virtual_bouquet_image.jpg" alt="Virtual Bouquet">
-        <p>Link to see them: <a href="https://www.katysdaisies.com/share/TWltaXxBbWluZXxJIGNhbid0IGdpdmUgeW91IHJlYWwgZmxvd2VycywgYnV0IEkgc3RpbGwgaG9wZSB5b3UncmUgZ29ubmEgbGlrZSB0aGVzZSF8VGVhcnkgRXllczogTGlnaHQgSW4gWW91ciBMaWZlfDQ0/" target="_blank">Click here</a></p>
+        <p>I can't give you real flowers unfortunately, but I still hope you're gonna like these! Link to see them : https://www.katysdaisies.com/share/TWltaXxBbWluZXxJIGNhbid0IGdpdmUgeW91IHJlYWwgZmxvd2VycywgYnV0IEkgc3RpbGwgaG9wZSB5b3UncmUgZ29ubmEgbGlrZSB0aGVzZSF8VGVhcnkgRXllczogTGlnaHQgSW4gWW91ciBMaWZlfDQ0/</p>
         <button onclick="nextQuestion(3)">Next</button>
     </div>
 
-    <!-- Cadeau 3 -->
+    <!-- Cadeau 3: Starbucks Gift Card -->
     <div id="question3" class="screen hidden">
-        <h2>I’m hot, I’m brown, and I’m full of beans. What am I?</h2>
+        <h2>I’m hot, I’m brown, and I’m full of beans. What am I? (it sounds weird I know)</h2>
         <button onclick="answerQuestion(3, 'A coffee')">A coffee</button>
         <button onclick="answerQuestion(3, 'A chocolate bar')">A chocolate bar</button>
         <button onclick="answerQuestion(3, 'A baked potato')">A ... 😉</button>
     </div>
 
     <div id="gift3" class="screen hidden">
-        <h3>🎁 You unlocked your third gift 😇 : Starbucks Gift Card!</h3>
+        <h3>🎁 You unlocked your third gift 😇 : Starbucks Gift Card for yaaa!</h3>
         <p><a href="starbucks_gift_card_link" target="_blank">Code : 6335600965819000-97204074</a></p>
         <button onclick="nextQuestion(4)">Next</button>
     </div>
 
-    <!-- Cadeau 4 -->
+    <!-- Cadeau 4: Fortnite Skins -->
     <div id="question4" class="screen hidden">
         <h2>Énigme : "Parents call me useless and a waste of money. What am I?"</h2>
         <button onclick="answerQuestion(4, 'A Fortnite skin')">A Fortnite skin</button>
         <button onclick="answerQuestion(4, 'A phone')">A phone</button>
-        <button onclick="answerQuestion(4, 'call me a good boy')">CALL ME A GOOD BOY 😫</button>
+        <button onclick="answerQuestion(4, 'A pet rock')">CALL ME A GOOD BOY 😫</button>
     </div>
 
     <div id="gift4" class="screen hidden">
         <h3>🎁 You unlocked your fourth gift 😇 : Fortnite Skins!!! YAYYYY</h3>
-        <p>hmmm, you'd have to login to see them so nothing else to see here 😇</p>
+        <p><a href="fortnite_skins_link" target="_blank">hmmm, you'd have to login to see them so nothing else to see here 😇 *what if she opens fortnite before I send this 😟*</a></p>
         <button onclick="nextQuestion(5)">Next</button>
     </div>
 
-    <!-- Cadeau 5 -->
+    <!-- Cadeau 5: Nintendo Gift Card -->
     <div id="question5" class="screen hidden">
         <h2>What’s Mario’s favorite type of shoe?</h2>
         <button onclick="answerQuestion(5, 'Sneakers')">Sneakers</button>
@@ -159,25 +156,26 @@
 
     <div id="gift5" class="screen hidden">
         <h3>🎁 You unlocked your fifth gift 🥳 : Nintendo Gift Card!</h3>
-        <p>Code : C0PX3QYVY646JDK0</p>
+        <p>Here’s a gift card that you can use on Switch to get anything you want (I mean that's kinda obvious idk what I'm saying at this point).
+        Code : C0PX3QYVY646JDK0</p>
         <button onclick="nextQuestion(6)">Next</button>
     </div>
 
-    <!-- Cadeau final -->
+    <!-- Cadeau final: It Takes Two -->
     <div id="question6" class="screen hidden">
-        <h2>What’s the best way to test a relationship ? 😎</h2>
+        <h2>What’s the best way to test a relationship ? 😎"</h2>
         <button onclick="answerQuestion(6, 'idk leave me alone')">idk leave me alone</button>
-        <button onclick="answerQuestion(6, 'Assembling IKEA furniture')">Assembling IKEA furniture</button>
+        <button onclick="answerQuestion(6, 'Assembling IKEA furniture')">Assembling IKEA furniture (I HAVE NIGHTMARES)</button>
         <button onclick="answerQuestion(6, 'Playing a co-op game')">Playing a co-op game</button>
     </div>
 
     <div id="gift6" class="screen hidden">
-        <h3>🎁 You unlocked your final gift : It Takes Two!</h3>
-        <p>Link : <a href="https://www.nintendo.com/en-ca/store/products/it-takes-two-friends-pass-switch/" target="_blank">Click here to play</a></p>
+        <h3>🎁 You unlocked your final gift duhh : It Takes Two!</h3>
+        <p>I have this amazing game that I played with my little sis and it was amazing and really fun, you can install it for free on switch since I have the game and I can invite you if you wanna play it someday with me 😛. Link : https://www.nintendo.com/en-ca/store/products/it-takes-two-friends-pass-switch/</p>
         <button onclick="endGame()">Finish</button>
     </div>
 
-    <!-- Écran final -->
+    <!-- Touche finale -->
     <div id="finalScreen" class="screen hidden">
         <div class="final-heart">❤️</div>
         <h1>I love you, you make my day better 💖</h1>
@@ -192,45 +190,48 @@
             "Almost 😋"
         ];
 
-        const correctAnswers = {
-            1: ['Music'],
-            2: ['A tulipire', 'A fangbloom'],
-            3: ['A coffee'],
-            4: ['A Fortnite skin', 'call me a good boy'],
-            5: ['Sneakers', 'Sandals', 'Jump boots'],
-            6: ['Playing a co-op game']
-        };
-
         function fillHeart() {
             heartClicks++;
             const heart = document.getElementById('heart');
-            heart.style.fontSize = `${30 + (heartClicks * 2)}px`;
+            const tooFastMessage = document.getElementById('tooFastMessage');
 
-            if (heartClicks === 30) {
-                heart.innerText = "💖";
-                document.getElementById('heartSound').play();
-                document.getElementById('tooFastMessage').classList.remove('hidden');
+            // Augmente la taille du cœur progressivement
+            heart.style.fontSize = `${30 + (heartClicks * 5)}px`;
+
+            if (heartClicks >= 15) {
+                heart.innerText = "😩"; // Remplace le cœur par l'emoji "😩"
+                tooFastMessage.classList.remove('hidden'); // Affiche le message et le bouton Next
             }
         }
 
         function answerQuestion(questionNumber, answer) {
-            const isCorrect = correctAnswers[questionNumber].includes(answer);
-            const giftScreen = document.getElementById('gift' + questionNumber);
-            
-            giftScreen.querySelector('h3').innerText = isCorrect 
-                ? `🎁 You unlocked your gift${questionNumber === 6 ? ' duhh' : ''}!` 
-                : wrongMessages[Math.floor(Math.random() * wrongMessages.length)];
+            const correctAnswers = {
+                1: "Music",
+                2: "A bloodrose", // Toutes les réponses sont acceptées
+                3: "A coffee",
+                4: "A Fortnite skin",
+                5: "Jump boots", // Toutes les réponses sont acceptées
+                6: "Playing a co-op game"
+            };
 
+            const giftScreen = document.getElementById('gift' + questionNumber);
+            if (answer === correctAnswers[questionNumber] || questionNumber === 2 || questionNumber === 5) {
+                giftScreen.querySelector('h3').innerText = "🎁 You unlocked your gift!";
+            } else {
+                const randomMessage = wrongMessages[Math.floor(Math.random() * wrongMessages.length)];
+                giftScreen.querySelector('h3').innerText = randomMessage;
+            }
             transitionScreen('question' + questionNumber, 'gift' + questionNumber);
         }
 
         function nextQuestion(nextQuestionNumber) {
-            transitionScreen(`gift${nextQuestionNumber-1}`, `question${nextQuestionNumber}`);
+            const currentScreen = document.querySelector('.screen.visible');
+            const nextScreen = document.getElementById('question' + nextQuestionNumber);
+            transitionScreen(currentScreen.id, nextScreen.id);
         }
 
         function endGame() {
             transitionScreen('gift6', 'finalScreen');
-            document.getElementById('backgroundMusic').play();
         }
 
         function transitionScreen(currentId, nextId) {
@@ -249,5 +250,6 @@
             }, 500);
         }
     </script>
+
 </body>
 </html>
