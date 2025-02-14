@@ -17,19 +17,39 @@
         .visible { display: inline-block; }
         .fade-in { opacity: 1; }
         .heart-button { color: red; cursor: pointer; transition: transform 0.3s ease; }
+        button { margin: 10px; padding: 10px 15px; background-color: #ff69b4; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background-color: #ff1493; }
+        video, img { max-width: 100%; border-radius: 10px; }
+        a { color: #ff69b4; }
     </style>
 </head>
 <body>
 
+<!-- Écran de départ -->
 <div id="startScreen" class="screen visible fade-in">
     <h1>Do you wanna be my Valentine? ❤️</h1>
     <p>Tap the heart 10 times to unlock the treasure hunt!</p>
     <div id="heart" class="heart-button" onclick="fillHeart()" style="font-size: 20px;">❤️</div>
 </div>
 
-<div id="nextScreen" class="screen hidden">
-    <h2>La chasse au trésor commence ! 🎁</h2>
+<!-- Énigme 1 -->
+<div id="question1" class="screen hidden">
+    <h2>I have no voice, but I can make you move. What am I?</h2>
+    <button onclick="answerQuestion(1, 0)">A ghost</button>
+    <button onclick="answerQuestion(1, 1)">Music</button>
+    <button onclick="answerQuestion(1, 2)">A remote control</button>
 </div>
+
+<!-- Cadeau 1 -->
+<div id="gift1" class="screen hidden">
+    <h3>🎁 You unlocked your first gift: Funny African Dance Video!</h3>
+    <video controls>
+        <source src="african_dance_video.mp4" type="video/mp4">
+    </video>
+    <button onclick="nextQuestion(2)">Next</button>
+</div>
+
+<!-- Ajoute tes autres questions/cadeaux ici -->
 
 <script>
     let heartClicks = 0;
@@ -42,8 +62,22 @@
         heart.style.fontSize = newSize + 'px';
 
         if (heartClicks >= maxClicks) {
-            transitionScreen('startScreen', 'nextScreen');
+            transitionScreen('startScreen', 'question1');
         }
+    }
+
+    function answerQuestion(questionNumber, chosenIndex) {
+        if (questionNumber === 1 && chosenIndex === 1) {
+            transitionScreen('question1', 'gift1');
+        } else {
+            alert("Not quite right, but here’s your gift anyway!");
+            transitionScreen('question1', 'gift1');
+        }
+    }
+
+    function nextQuestion(nextNumber) {
+        alert("Ajoute les autres questions ici!");
+        // Tu ajouteras ici la suite des transitions vers tes autres questions/cadeaux
     }
 
     function transitionScreen(currentId, nextId) {
